@@ -1,17 +1,36 @@
-const express=require('express'),
-      mongoose=require('mongoose'),
-      cors=require('cors'),
+const express   =require('express'),
       bodyParser=require('body-parser'),
-      app=express();
+      mongoose  =require('mongoose'),
+      cors      =require('cors'),
+      dotenv    =require('dotenv'),
+      app       =express();
 
-//CORS AND BODYPARSER
-app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({extended:true}));   //parse the url encoded bodies
-app.use(cors());    
 
-//SERVER CONFIG
+
+ //middleware     
+dotenv.config();
+app.use(cors());
+app.use(bodyParser.json());
+
+
+//db coonection
+const db_uri=process.env.MONGO_URI;
+
+mongoose.connect(db_uri,{
+    useNewUrlParser:true,
+    useCreateIndex:true
+}).then(()=>{
+    console.log("Database Connected ...")}).catch((err)=>{
+        console.log(err);
+    });
+
+
+//API 
+app.use('/api/events/',require('./routes/api/events'));
+
+
+//server config
 const port=process.env.PORT||5000;
- 
- app.listen(port, () => {
-     console.log(`server listening on port ${port}`);
- });
+app.listen(port, () => {
+    console.log(`server listening on port ${port}`);
+});
