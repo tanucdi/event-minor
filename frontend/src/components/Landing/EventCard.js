@@ -12,7 +12,7 @@ import{
 
 const EventCard=({name})=>(
   
-        <div>
+        <div className="col-6">
           <Card>
           <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
           <CardBody>

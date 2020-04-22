@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {getEvents} from '../../store/actions/events';
 import {connect} from 'react-redux';
 import EventCard from './EventCard';
+
 class Landing extends Component{
     static propTypes={
         getEvents:PropTypes.func.isRequired
@@ -19,9 +20,12 @@ class Landing extends Component{
             return <EventCard key={event._id} {...event}/>
         })
     return (
-        <div>
-            
-        <ul>{cards}</ul>
+        <div className="Landing">
+         <div className="Container">
+             <div className="row"> 
+                {cards}
+            </div>
+        </div>
         </div>
     )
   }
