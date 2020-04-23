@@ -7,6 +7,14 @@ const eventSchema=new Schema({
         type:String,
         required:true
     },
+    description:{
+        type:String,
+        required:true
+    },
+    event_image:{
+        type:String,
+        required:true
+    },
     event_date:{
         type:String,
         required:true

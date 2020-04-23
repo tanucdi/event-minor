@@ -11,6 +11,7 @@ const express   =require('express'),
 dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('./public'));
 
 
 //db coonection
