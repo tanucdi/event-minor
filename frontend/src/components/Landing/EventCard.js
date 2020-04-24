@@ -9,12 +9,11 @@ import{
     Button,
     CardTitle
 } from 'reactstrap';
-
-const EventCard=({name})=>(
-  
+const EventCard=({name,event_image})=>(
+        
         <div className="col-6">
-          <Card>
-          <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
+          <Card> 
+          <CardImg top width="100%" src={"http://localhost:5000/uploads/"+event_image} alt="Card image cap" />
           <CardBody>
             <CardTitle>{name}</CardTitle>
             <CardSubtitle>Card subtitle</CardSubtitle>
@@ -26,6 +25,7 @@ const EventCard=({name})=>(
     )
 
 EventCard.propTypes={
-  name:PropTypes.string.isRequired
+  name:PropTypes.string.isRequired,
+  event_image:PropTypes.string.isRequired
 }
 export default EventCard

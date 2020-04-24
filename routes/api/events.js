@@ -1,6 +1,6 @@
 const express=require('express'),
-        fs=require('fs'),
-      router=express.Router();
+           fs=require('fs'),
+       router=express.Router();
 
 //import event model      
 const Event=require('../../models/EventModel');
@@ -15,7 +15,7 @@ const storage=multer.diskStorage({
 })
 const upload=multer({
     storage:storage,
-    limits:{fileSize:4000000},
+    limits:{fileSize:200*1024*1024},
     fileFilter:(req,file,cb)=>{
         checkFileType(file,cb)
     }
@@ -47,12 +47,12 @@ router.get('/', (req, res) => {
 
 //route POST  api/events  save a  newevent 
 router.post('/',upload.single('event_image'),(req,res)=>{
-        
+       console.log(req.file.filename); 
     const newEvent=new Event(
         {
             name:req.body.name,
             description:req.body.description,
-            event_image:req.file.path,
+            event_image:req.file.filename,
             event_date:req.body.event_date,
             event_time:req.body.event_time,
             tag:req.body.tag,

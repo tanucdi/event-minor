@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import EventCard from './Landing/EventCard';
 
 class BrowseEvent extends Component{
+    
     static propTypes={
         getEvents:PropTypes.func.isRequired
     }
@@ -13,6 +14,7 @@ class BrowseEvent extends Component{
     }
     componentWillMount(){
         this.props.getEvents();
+        
     }
     render(){
         const {events}=this.props.events;
