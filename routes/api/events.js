@@ -42,7 +42,7 @@ function checkFileType(file, cb){
 router.get('/', (req, res) => {
     Event.find()
     .then(events=>res.json(events))
-    .catch(err=>console.log(err))
+    .catch(err=>res.json(err))
 });
 
 //route POST  api/events  save a  newevent 
@@ -60,7 +60,7 @@ router.post('/',upload.single('event_image'),(req,res)=>{
             price:req.body.price
         }
     )
-    newEvent.save().then(event=>res.json(event)).catch((err)=>console.log(err));
+    newEvent.save().then(event=>res.json(event)).catch((err)=>res.json(err));
 })
 
 

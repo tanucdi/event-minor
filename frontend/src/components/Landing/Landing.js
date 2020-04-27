@@ -11,7 +11,7 @@ class Landing extends Component{
     static defaultProps={
         events:[]
     }
-    componentWillMount(){
+    componentDidMount(){
         this.props.getEvents();
     }
     render(){
