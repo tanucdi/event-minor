@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
+
 
 
 class CreateEvent extends Component {
@@ -14,7 +16,9 @@ class CreateEvent extends Component {
             price:0,
             description:'',
             selectedfile:null,
-            success:false
+            success:false,
+            errors:null,
+            redirect:false
         }
     }
     
@@ -33,8 +37,18 @@ class CreateEvent extends Component {
         fd.append('description',this.state.description);
         axios.post('http://localhost:5000/api/events/',fd).then((res)=>{
             console.log(res);
+            this.setState({
+              success:true,
+            })
+            setTimeout(() => {
+              this.setState({redirect:true})
+            }, 5000);
             
-        }).catch(err=>console.log(err));
+        }).catch(err=>{
+          this.setState({
+            errors:err
+          })
+        })
         
 
     }
@@ -44,6 +58,7 @@ class CreateEvent extends Component {
         })
 
     }
+    
     fileSelect=(evt)=>{
         this.setState({
             selectedfile:evt.target.files[0]
@@ -51,6 +66,19 @@ class CreateEvent extends Component {
     }
 
   render(){
+   if(this.state.redirect && this.state.success){
+     return(
+       <Redirect to='/'/>
+     )
+   } 
+   if(this.state.success){
+     return (
+     <div>
+       <Alert>
+         Event successfuly created</Alert>
+     </div>
+     )
+   } 
   return (
     <Form className="container" onSubmit={this.onClickSubmit}>
       <FormGroup>

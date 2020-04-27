@@ -48,6 +48,7 @@ router.get('/', (req, res) => {
 //route POST  api/events  save a  newevent 
 router.post('/',upload.single('event_image'),(req,res)=>{
        console.log(req.file.filename); 
+       
     const newEvent=new Event(
         {
             name:req.body.name,

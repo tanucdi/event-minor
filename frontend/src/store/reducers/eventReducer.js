@@ -2,7 +2,7 @@ import {GET_EVENTS,CREATE_EVENT} from '../actions/types';
 
 const initialState={
     events:[],
-    error:''
+    error:null
 }
 export default function eventReducer(state=initialState,action){
     switch(action.type){

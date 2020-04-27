@@ -1,4 +1,4 @@
-import {GET_EVENTS,CREATE_EVENT} from './types';
+import {GET_EVENTS} from './types';
 import axios from 'axios';
 
 export const getEvents=()=>(dispatch)=>{
@@ -7,10 +7,4 @@ export const getEvents=()=>(dispatch)=>{
         payload:res.data
     }))
 }
-export const createEvents=(formData)=>(dispatch)=>{
-    axios.post('http://localhost:5000/api/events/',formData)
-    .then(res=>dispatch({
-        type:CREATE_EVENT,
-        payload:res.data
-    }))
-}
+
