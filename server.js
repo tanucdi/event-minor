@@ -28,6 +28,7 @@ mongoose.connect(db_uri,{
 
 //API 
 app.use('/api/events/',require('./routes/api/events'));
+app.use('/api/user/',require('./routes/api/user'));
 
 
 //server config

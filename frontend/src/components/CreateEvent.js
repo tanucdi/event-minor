@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
-
+import config from '../utils/setToken';
 
 
 class CreateEvent extends Component {
@@ -27,6 +27,9 @@ class CreateEvent extends Component {
  onClickSubmit=(evt)=>{
         evt.preventDefault();
         const fd=new FormData();
+         
+      
+             
         fd.append('event_image',this.state.selectedfile);
         fd.append('name',this.state.event_name);
         fd.append('event_date',this.state.event_date);
@@ -35,7 +38,7 @@ class CreateEvent extends Component {
         fd.append('price',this.state.price);
         fd.append('venue',this.state.venue);
         fd.append('description',this.state.description);
-        axios.post('http://localhost:5000/api/events/',fd).then((res)=>{
+        axios.post('http://localhost:5000/api/events/',fd,config).then((res)=>{
             console.log(res);
             this.setState({
               success:true,

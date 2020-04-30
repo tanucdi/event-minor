@@ -31,7 +31,12 @@ const NavBar = (props) => {
             <NavItem>
               <NavLink tag={Link} to='/login'>login</NavLink>
             </NavItem>
-            
+            <NavItem>
+              <NavLink tag={Link} to='/register'>register</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to='/logout'>logout</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

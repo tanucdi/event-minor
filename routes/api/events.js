@@ -5,6 +5,7 @@ const express=require('express'),
 //import event model      
 const Event=require('../../models/EventModel');
 //multer middleware
+const auth=require('../../middleware/auth');
 const path=require('path');
 const multer=require('multer');
 const storage=multer.diskStorage({
@@ -46,7 +47,7 @@ router.get('/', (req, res) => {
 });
 
 //route POST  api/events  save a  newevent 
-router.post('/',upload.single('event_image'),(req,res)=>{
+router.post('/',auth,upload.single('event_image'),(req,res)=>{
        console.log(req.file.filename); 
        
     const newEvent=new Event(

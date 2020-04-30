@@ -1,4 +1,4 @@
-import {GET_EVENTS,CREATE_EVENT} from '../actions/types';
+import {GET_EVENTS} from '../actions/types';
 
 const initialState={
     events:[],
@@ -11,11 +11,7 @@ export default function eventReducer(state=initialState,action){
                 ...state,
                 events:action.payload
             }
-        case CREATE_EVENT:
-            return{
-                ...state,
-                events:[...state.events,action.payload]
-            }     
+             
         default:
             return state;    
     }
